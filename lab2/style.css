@@ -1,0 +1,113 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2b332c;
+    padding: 15px;
+}
+
+
+.container {
+    background-color: #3b443c;
+    padding: 18px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 280px; /* Tamaño reducido */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+h1 {
+    font-size: 1.1rem;
+    color: #e2e8e3;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+.entrada input {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.95rem;
+    text-align: center;
+    border: 1px solid #525f54;
+    border-radius: 4px;
+    background-color: #222823;
+    color: #a3c9a8;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+
+.opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.opciones label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: #c5d1c6;
+    cursor: pointer;
+}
+
+
+.opciones input[type="number"] {
+    width: 45px;
+    padding: 3px 5px;
+    text-align: center;
+    border: 1px solid #525f54;
+    border-radius: 4px;
+    background-color: #222823;
+    color: #e2e8e3;
+    font-size: 0.82rem;
+}
+
+
+.opciones input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #6b8e6e;
+    cursor: pointer;
+}
+
+
+#botonGenerar {
+    width: 100%;
+    padding: 8px;
+    background-color: #557257;
+    color: #f0f4f1;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#botonGenerar:hover {
+    background-color: #445c46;
+}
+
+.error {
+    color: #e5989b; /* Color rosado/rojo desvaído que encaja con tonos opacos */
+    font-size: 0.78rem;
+    text-align: center;
+    min-height: 1.2em; /* Mantiene el espacio reservado para evitar que la tarjeta cambie de tamaño */
+}
