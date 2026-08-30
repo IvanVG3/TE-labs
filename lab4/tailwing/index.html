@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea tu equipo Pokémon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-4">GENERA TU EQUIPO ALEATORIO!</h1>
+        <button id="cargar"
+            class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-200 mb-8">
+            Generar
+        </button>
+        <div id="galeria" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+<script>
+    const Cargar = document.getElementById('cargar');
+    const galeria = document.getElementById('galeria');
+
+    function generarIdsAleatorios(cantidad, max) {
+        const ids = [];
+        while (ids.length < cantidad) {
+            const idRamdom = Math.floor(Math.random() * max) + 1;
+            if (!ids.includes(idRamdom)) {
+                ids.push(idRamdom);
+            }
+        }
+        return ids;
+    }
+
+    Cargar.addEventListener('click', () => {
+        const ids = generarIdsAleatorios(6, 155);
+
+        const peticiones = ids.map(id =>
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json())
+        );
+
+        galeria.innerHTML = '';
+
+        Promise.all(peticiones)
+            .then(pokemones => {
+                pokemones.forEach(pokemon => {
+                    const nombre = pokemon.name;
+                    const imagen = pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default;
+                    const tipos = pokemon.types.map(t => t.type.name).join(', ');
+
+                    const tarjeta = document.createElement('div');
+                    tarjeta.className = 'bg-white rounded-xl shadow-sm border border-gray-200 p-3 flex flex-col items-center justify-between text-center hover:shadow-md transition';
+
+                    tarjeta.innerHTML = `
+          <img src="${imagen}" alt="${nombre}" class="w-24 h-24 object-contain mb-2">
+          <div>
+            <h3 class="font-bold text-gray-800 capitalize text-sm mb-1">${nombre}</h3>
+            <p class="text-xs text-gray-500"><strong>Tipo:</strong> ${tipos}</p>
+          </div>
+        `;
+
+                    galeria.appendChild(tarjeta);
+                });
+            })
+            .catch(error => console.error('Error al obtener los Pokémon:', error));
+    });
+</script>
