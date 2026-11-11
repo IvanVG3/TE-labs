@@ -1,5 +1,0 @@
-¿Qué es React y cómo se integra con Vite, TypeScript y TSX?
-React es una libreria de JS para construir interfaces de usuario a partir de componentes, en lugar de manipular el documento HTML directamente, react utiliza un 
-enfoque declarativo y un DOM virtual para actualizar la pantalla de forma eficiente, se integra con typescript y tsx para añadir tipado estatico directamente sobre 
-la sintaxis de marcado, permitiendo validar las propiedades del codigo antes de ejecutarlo, Vite actua como herramienta de desarrollo y empaquetado que procesa de manera 
-ultra rapida los archivos tsx 
